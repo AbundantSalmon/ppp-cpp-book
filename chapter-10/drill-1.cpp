@@ -41,10 +41,9 @@ std::istream &operator>>(std::istream &is, Point &pp)
     int y;
     std::cin >> x >> y;
 
-    // if failure occurs, set state to fail and return
+    // if failure occurs, return without touching Point pp
     if (std::cin.fail())
     {
-        is.clear(std::ios_base::failbit);
         return is;
     }
 
