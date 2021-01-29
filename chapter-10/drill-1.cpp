@@ -49,8 +49,7 @@ std::istream &operator>>(std::istream &is, Point &pp)
     }
 
     //if successful then set Point to entered values.
-    pp.x = x;
-    pp.y = y;
+    pp = Point{x,y};
 
     return is;
 }
