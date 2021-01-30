@@ -12,7 +12,6 @@
 
 #include <vector>
 #include <iostream>
-#include <istream>
 
 /**
  * @brief Datatype to hold (x,y) coordinate points
@@ -26,7 +25,7 @@ public:
 };
 
 /**
- * @brief extraction operator for "x y" input values for point
+ * @brief extraction operator for "x y" input values for Point
  * 
  * @param is input stream
  * @param pp point to extract to
@@ -42,36 +41,52 @@ std::istream &operator>>(std::istream &is, Point &pp)
     std::cin >> x >> y;
 
     // if failure occurs, return without touching Point pp
-    if (std::cin.fail())
+    if (!std::cin)
     {
-        return is;
+        throw std::runtime_error("User input error");
     }
 
     //if successful then set Point to entered values.
-    pp = Point{x,y};
+    pp = Point{x, y};
 
     return is;
+}
+
+/**
+ * @brief function to prompt user to enter points to be stored in list of points
+ * 
+ * @param number_of_points must be must be at least 1
+ * @param list_of_points std::vector<Point>
+ */
+void prompt_user_for_points(int number_of_points, std::vector<Point> &list_of_points)
+{
+    // number of requested points must be at least 1
+    assert(number_of_points >= 1);
+
+    for (int i = 1; i <= number_of_points; ++i) // <= so range is 1 to 7
+    {
+        Point p;
+        std::cout << "Point " << i << ": ";
+        std::cin >> p;
+        // std::cout << std::endl;
+        list_of_points.push_back(p);
+    }
 }
 
 int main()
 {
     std::vector<Point> original_points;
 
-    std::cout << "Please enter 7 (x, y) points in the format: x y\n";
-
-    // convert into it's own read x values function
-    for (int i = 1; i <= 7; ++i) // <= so range is 1 to 7
+    // prompt user to enter points
+    try
     {
-        Point p;
-        std::cout << "Point " << i << ": ";
-        std::cin >> p;
-        // std::cout << std::endl;
-        original_points.push_back(p);
+        std::cout << "Please enter 7 (x, y) points in the format: x y\n";
+        prompt_user_for_points(7, original_points);
     }
-
-    // exit's program if read error has occurred
-    if (std::cin.fail())
+    catch (std::exception &exception)
     {
+        // gracefully exit program if input error has occurred
+        std::cerr << exception.what() << std::endl;
         return 1;
     }
 
@@ -82,5 +97,6 @@ int main()
         std::cout << "(" << p.x << "," << p.y << ")" << std::endl;
     }
 
+    //program has successfully run
     return 0;
 }
