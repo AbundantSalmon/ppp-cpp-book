@@ -12,14 +12,8 @@
         "showReuseMessage": true,
         "clear": false
       },
-      "command": "/usr/bin/g++",
-      "args": [
-        "-g",
-        "${fileDirname}/*.cpp",
-        "-o",
-        "${fileDirname}/${fileBasenameNoExtension}.o",
-        "-std=c++14"
-      ],
+      "command": "/usr/bin/g++ -g ${fileDirname}/*.cpp -o ${fileDirname}/${fileBasenameNoExtension}.o -std=c++14 `fltk-config --ldflags`",
+      "args": [],
       "options": {
         "cwd": "${workspaceFolder}"
       },
