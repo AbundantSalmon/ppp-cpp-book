@@ -12,7 +12,7 @@
         "showReuseMessage": true,
         "clear": false
       },
-      "command": "/usr/bin/g++ -g ${fileDirname}/*.cpp -o ${fileDirname}/${fileBasenameNoExtension}.o -std=c++14 `fltk-config --ldflags`",
+      "command": "/usr/bin/g++ -g ${fileDirname}/*.cpp -o ${fileDirname}/${fileBasenameNoExtension}.o -std=c++14 `fltk-config --ldflags --use-images`",
       "args": [],
       "options": {
         "cwd": "${workspaceFolder}"
