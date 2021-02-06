@@ -1,5 +1,5 @@
-#include "Graph.h"
-#include "Simple_window.h"
+#include "../fltk/Graph.h"
+#include "../fltk/Simple_window.h"
 
 int main()
 {
