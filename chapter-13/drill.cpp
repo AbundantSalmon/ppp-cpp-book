@@ -1,6 +1,7 @@
 #include "../fltk/Graph.h"
 #include "../fltk/Simple_window.h"
 #include <random>
+#include "Userdefined_Shapes.h"
 
 int main()
 {
@@ -43,6 +44,11 @@ int main()
         win.attach(cat1);
         win.attach(cat2);
         win.attach(cat3);
+
+        // add user defined star
+        Userdefined_Shapes::Star star{Point{400, 400}, 7, 200, 100};
+
+        win.attach(star);
 
         // put a 100x100 image in the window and move when ever next button is clicked
         Graph_lib::Image puppy1{Point{100, 0}, "puppy.jpg"};
